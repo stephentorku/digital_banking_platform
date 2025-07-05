@@ -10,7 +10,10 @@ sourceCompatibility = '17'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'org.postgresql:postgresql' // or mysql
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-config-server:4.0.4'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.4'
+//    runtimeOnly 'org.postgresql:postgresql' // or mysql
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
