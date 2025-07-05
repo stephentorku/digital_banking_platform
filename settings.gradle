@@ -1,1 +1,20 @@
-rootProject.name = 'digital_banking'
+
+pluginManagement {
+    plugins {
+        id 'org.springframework.boot' version '3.3.1'
+        id 'io.spring.dependency-management' version '1.1.7'
+    }
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+rootProject.name = 'digital-banking-platform'
+
+include 'account-service'
+include 'transaction-service'
+include 'auth-service'
+include 'gateway-service'
+include 'discovery-service'
+include 'config-service'
+include 'notification-service'
