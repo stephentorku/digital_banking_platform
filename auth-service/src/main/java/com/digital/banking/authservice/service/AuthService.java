@@ -16,6 +16,8 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+
 
     public AuthResponse register(RegisterRequest request) {
         var user = User.builder()
@@ -27,9 +29,8 @@ public class AuthService {
                 .build();
         userRepository.save(user);
 
-        return AuthResponse.builder()
-                .token("dummy-token")
-                .build();
+        String token = jwtService.generateToken(user.getEmail());
+        return AuthResponse.builder().token(token).build();
     }
 
     public AuthResponse authenticate(AuthRequest request) {
@@ -40,8 +41,7 @@ public class AuthService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return AuthResponse.builder()
-                .token("dummy-token")
-                .build();
+        String token = jwtService.generateToken(user.getEmail());
+        return AuthResponse.builder().token(token).build();
     }
 }
