@@ -2,6 +2,8 @@ package com.digital.banking.accountservice.controller;
 
 import com.digital.banking.accountservice.model.Account;
 import com.digital.banking.accountservice.service.AccountService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,9 +18,14 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping
-    public List<Account> getAccounts() {
-        return accountService.getAllAccounts();
+    @GetMapping("/me")
+    public ResponseEntity<String> getAccount(Authentication auth) {
+        return ResponseEntity.ok("Account access granted to: " + auth.getName());
+    }
+
+    @GetMapping("/public")
+    public ResponseEntity<String> publicEndpoint() {
+        return ResponseEntity.ok("This endpoint is public.");
     }
 
     @PostMapping
