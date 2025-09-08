@@ -1,22 +1,21 @@
 package com.digital.banking.accountservice.model;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
+import lombok.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Account {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String accountNumber;
-
-    private String accountHolderName;
-
-    private BigDecimal balance;
-
     private String accountType;
+    private Double balance;
 
-    // Getters and Setters
+    private String userId;
 }

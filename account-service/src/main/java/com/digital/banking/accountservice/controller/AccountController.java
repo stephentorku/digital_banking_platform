@@ -1,5 +1,6 @@
 package com.digital.banking.accountservice.controller;
 
+import com.digital.banking.accountservice.dto.AccountDto;
 import com.digital.banking.accountservice.model.Account;
 import com.digital.banking.accountservice.service.AccountService;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,12 @@ public class AccountController {
     }
 
     @PostMapping
-    public Account createAccount(@RequestBody Account account) {
-        return accountService.createAccount(account);
+    public AccountDto createAccount(@RequestBody AccountDto accountDto, Authentication auth) {
+        return accountService.createAccount(accountDto, auth);
+    }
+
+    @GetMapping("/{id}")
+    public AccountDto getAccountById(@PathVariable Long id) {
+        return accountService.getAccountById(id);
     }
 }
