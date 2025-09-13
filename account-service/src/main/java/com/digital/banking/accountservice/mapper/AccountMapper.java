@@ -14,7 +14,7 @@ public class AccountMapper {
                 .build();
     }
 
-    public static Account toEntity(AccountDto dto, String userId) {
+    public static Account toEntity(AccountDto dto, Long userId) {
         return Account.builder()
                 .accountNumber(dto.getAccountNumber())
                 .accountType(dto.getAccountType())

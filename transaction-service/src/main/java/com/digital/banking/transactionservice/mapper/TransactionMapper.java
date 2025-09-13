@@ -4,11 +4,10 @@ import com.digital.banking.transactionservice.dto.TransactionDto;
 import com.digital.banking.transactionservice.model.Transaction;
 
 public class TransactionMapper {
-
     public static TransactionDto toDto(Transaction transaction) {
         return TransactionDto.builder()
                 .id(transaction.getId())
-                .accountId(transaction.getAccountId())
+                .accountNumber(transaction.getAccountNumber())
                 .amount(transaction.getAmount())
                 .type(transaction.getType())
                 .timestamp(transaction.getTimestamp())
@@ -18,7 +17,7 @@ public class TransactionMapper {
     public static Transaction toEntity(TransactionDto dto) {
         return Transaction.builder()
                 .id(dto.getId())
-                .accountId(dto.getAccountId())
+                .accountNumber(dto.getAccountNumber())
                 .amount(dto.getAmount())
                 .type(dto.getType())
                 .timestamp(dto.getTimestamp())

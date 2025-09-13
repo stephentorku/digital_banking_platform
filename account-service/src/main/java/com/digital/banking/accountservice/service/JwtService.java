@@ -3,6 +3,7 @@ package com.digital.banking.accountservice.service;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,9 @@ public class JwtService {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
+    }
+    public Long extractUserId(String token) {
+        return extractClaim(token, claims -> claims.get("userId", Long.class));
     }
 
     private Key getSigningKey() {

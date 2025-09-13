@@ -5,7 +5,7 @@ spring:
   application:
     name: auth-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/accountdb
+    url: jdbc:postgresql://localhost:5432/authdb
     username: stephentorku
     password: gangsta
     driver-class-name: org.postgresql.Driver

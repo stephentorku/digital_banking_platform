@@ -16,13 +16,22 @@ spring:
         - id: account-service
           uri: lb://account-service
           predicates:
-            - Path=/api/account/**
+            - Path=/api/accounts/**
+        #Auth Service
         - id: auth-service
           uri: lb://auth-service
           predicates:
             - Path=/api/auth/**
+        # Transaction Service
+        - id: transaction-service
+          uri: lb://transaction-service
+          predicates:
+            - Path=/api/transactions/**
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+jwt:
+  secret: 6E572C3A344B46294A404E635266556A5970327336763979244226452948404D

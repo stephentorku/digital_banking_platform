@@ -10,14 +10,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeExchange(auth -> auth
-                                .anyExchange().permitAll()
-//                        .anyExchange().authenticated()
+        return http
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .authorizeExchange(exchanges -> exchanges
+                        .anyExchange().permitAll() // Let your custom filter handle all auth
                 )
-        ;
-
-        return http.build();
+                .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
+                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
+                .build();
     }
 }

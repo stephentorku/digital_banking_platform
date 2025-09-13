@@ -17,7 +17,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String accountId;
+    private String accountNumber;
 
     private Double amount;
 
