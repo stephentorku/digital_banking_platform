@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class TransactionDto {
-    private Long id;
     private String accountNumber;
     private Double amount;
     private TransactionType type;

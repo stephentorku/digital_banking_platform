@@ -23,7 +23,7 @@ public class TransactionService {
 
     public TransactionDto createTransaction(TransactionDto dto) {
         // 1. Retrieve account info
-        AccountDto account = accountClient.getAccountByNumber(dto.getAccountNumber());
+        AccountDto account = accountClient.getAccountByNumber(dto.getAccountNumber()).getBody();
 
         if (dto.getType().equals(TransactionType.DEBIT) && account.getBalance() < dto.getAmount()) {
             throw new IllegalArgumentException("Insufficient funds");

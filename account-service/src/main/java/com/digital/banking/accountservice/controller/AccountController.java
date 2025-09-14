@@ -45,4 +45,16 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getAccountByAccountNumber(accountNumber));
     }
 
+    @PostMapping("/{accountNumber}/debit")
+    public ResponseEntity<AccountDto> debitAccount(@PathVariable String accountNumber,
+                                                   @RequestParam Double amount) {
+        return ResponseEntity.ok(accountService.debit(accountNumber, amount));
+    }
+
+    @PostMapping("/{accountNumber}/credit")
+    public ResponseEntity<AccountDto> creditAccount(@PathVariable String accountNumber,
+                                                    @RequestParam Double amount) {
+        return ResponseEntity.ok(accountService.credit(accountNumber, amount));
+    }
+
 }

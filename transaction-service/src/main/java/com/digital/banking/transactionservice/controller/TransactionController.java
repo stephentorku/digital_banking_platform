@@ -15,7 +15,7 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<TransactionDto> createTransaction(@RequestBody TransactionDto dto) {
         return ResponseEntity.ok(transactionService.createTransaction(dto));
     }
