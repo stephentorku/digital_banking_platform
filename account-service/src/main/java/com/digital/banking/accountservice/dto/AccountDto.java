@@ -10,4 +10,5 @@ public class AccountDto {
     private String accountNumber;
     private String accountType;
     private Double balance;
+    private String ownerEmail;
 }

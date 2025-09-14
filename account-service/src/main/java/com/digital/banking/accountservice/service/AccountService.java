@@ -40,10 +40,13 @@ public class AccountService {
     }
 
 
-    public AccountDto getAccountByAccountNumber(String accountNumber) {
+    public AccountDto getAccountByAccountNumber(String accountNumber, Authentication auth) {
         Account account = accountRepository.findByAccountNumber(accountNumber)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
-        return AccountMapper.toDto(account);
+        AccountDto accountDto = AccountMapper.toDto(account);
+        accountDto.setOwnerEmail(auth.getName());
+
+        return accountDto;
     }
 
     public AccountDto getMyAccount(Authentication auth) {

@@ -2,13 +2,16 @@ package com.digital.banking.transactionservice.service;
 
 import com.digital.banking.transactionservice.client.AccountClient;
 import com.digital.banking.transactionservice.dto.AccountDto;
+import com.digital.banking.transactionservice.dto.TransactionCreatedEvent;
 import com.digital.banking.transactionservice.dto.TransactionDto;
 import com.digital.banking.transactionservice.mapper.TransactionMapper;
 import com.digital.banking.transactionservice.model.Transaction;
 import com.digital.banking.transactionservice.model.TransactionType;
 import com.digital.banking.transactionservice.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import com.digital.banking.transactionservice.dto.NotificationRequest;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,6 +23,7 @@ public class TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final AccountClient accountClient;
+    private final KafkaTemplate<String, TransactionCreatedEvent> kafkaTemplate;
 
     public TransactionDto createTransaction(TransactionDto dto) {
         // 1. Retrieve account info
@@ -41,7 +45,17 @@ public class TransactionService {
                 .type(dto.getType())
                 .timestamp(LocalDateTime.now())
                 .build();
-        transactionRepository.save(tx);
+        Transaction saved = transactionRepository.save(tx);
+
+        // publish event
+        TransactionCreatedEvent event = new TransactionCreatedEvent(
+                saved.getId().toString(),
+                saved.getAccountNumber(),
+                saved.getAmount(),
+                account.getOwnerEmail()
+        );
+
+        kafkaTemplate.send("transaction-events", event);
 
         return TransactionMapper.toDto(tx);
     }

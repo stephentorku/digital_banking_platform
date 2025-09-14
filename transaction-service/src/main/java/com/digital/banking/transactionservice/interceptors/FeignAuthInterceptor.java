@@ -13,7 +13,6 @@ public class FeignAuthInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate template) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("credentials from client " + auth.getCredentials());
         if (auth != null && auth.getCredentials() instanceof String token) {
             template.header(HttpHeaders.AUTHORIZATION, "Bearer " + token);
         }

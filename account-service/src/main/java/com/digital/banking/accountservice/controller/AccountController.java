@@ -41,8 +41,8 @@ public class AccountController {
 
 
     @GetMapping("/{accountNumber}")
-    public ResponseEntity<AccountDto> getAccountDetails(@PathVariable String accountNumber) {
-        return ResponseEntity.ok(accountService.getAccountByAccountNumber(accountNumber));
+    public ResponseEntity<AccountDto> getAccountDetails(@PathVariable String accountNumber, Authentication auth) {
+        return ResponseEntity.ok(accountService.getAccountByAccountNumber(accountNumber,auth));
     }
 
     @PostMapping("/{accountNumber}/debit")
