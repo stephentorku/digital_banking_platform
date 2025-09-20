@@ -18,3 +18,5 @@ include 'gateway-service'
 include 'discovery-service'
 include 'config-service'
 include 'notification-service'
+include 'common'
+

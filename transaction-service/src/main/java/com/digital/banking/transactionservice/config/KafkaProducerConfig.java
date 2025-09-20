@@ -1,6 +1,6 @@
 package com.digital.banking.transactionservice.config;
 
-import com.digital.banking.transactionservice.dto.TransactionCreatedEvent;
+import com.digital.banking.shared.dto.TransactionCreatedEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;

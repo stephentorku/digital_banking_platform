@@ -1,4 +1,5 @@
-package com.digital.banking.notificationservice.dto;
+package com.digital.banking.shared.dto;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

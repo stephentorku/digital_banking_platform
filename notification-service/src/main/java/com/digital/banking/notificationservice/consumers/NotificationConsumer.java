@@ -1,6 +1,6 @@
 package com.digital.banking.notificationservice.consumers;
 
-import com.digital.banking.notificationservice.dto.TransactionCreatedEvent;
+import com.digital.banking.shared.dto.TransactionCreatedEvent;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 

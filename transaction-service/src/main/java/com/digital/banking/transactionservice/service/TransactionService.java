@@ -1,8 +1,8 @@
 package com.digital.banking.transactionservice.service;
 
+import com.digital.banking.shared.dto.TransactionCreatedEvent;
 import com.digital.banking.transactionservice.client.AccountClient;
 import com.digital.banking.transactionservice.dto.AccountDto;
-import com.digital.banking.transactionservice.dto.TransactionCreatedEvent;
 import com.digital.banking.transactionservice.dto.TransactionDto;
 import com.digital.banking.transactionservice.mapper.TransactionMapper;
 import com.digital.banking.transactionservice.model.Transaction;
@@ -11,7 +11,6 @@ import com.digital.banking.transactionservice.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import com.digital.banking.transactionservice.dto.NotificationRequest;
 
 import java.time.LocalDateTime;
 import java.util.List;
